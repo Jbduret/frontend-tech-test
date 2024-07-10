@@ -1,20 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import { List, ListItem, Size } from '@lumx/react';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import PropTypes from 'prop-types';
 import Hero from '../Hero';
 import { get } from '../../api';
 import './index.scss';
 
-function HerosList() {
+function HerosList({ searchValue }) {
   const [heros, setHeros] = useState([]);
   const [error, setError] = useState(null);
 
+  let request = 'characters?limit=4';
+  if (searchValue) {
+    request += `&nameStartsWith=${searchValue}`;
+  }
+
   useEffect(() => {
-    get('characters?limit=4')
+    get(request)
       .then((data) => {
         setHeros(data.data.data.results);
       })
       .catch((err) => { setError(err); });
-  }, []);
+  }, [searchValue, request]);
 
   if (error) return `Error: ${error.message}`;
   if (!heros) return 'No heros!';
@@ -44,5 +51,13 @@ function HerosList() {
 	<div />
   );
 }
+
+HerosList.propTypes = {
+  searchValue: PropTypes.string,
+};
+
+HerosList.defaultProps = {
+  searchValue: '',
+};
 
 export default HerosList;

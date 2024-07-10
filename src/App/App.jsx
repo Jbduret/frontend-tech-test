@@ -1,5 +1,4 @@
-/* eslint-disable react/no-unescaped-entities */
-import React from 'react';
+import React, { useState } from 'react';
 import './App.scss';
 import {
   BrowserRouter as Router,
@@ -9,23 +8,25 @@ import {
 import Header from '../components/Header';
 import HerosList from '../components/HerosList';
 
-function App() {
+const App = () => {
+  const [searchValue, setSearchValue] = useState('');
+
   return (
 	<>
 		<Router>
-			<Header />
+			<Header setSearchValue={setSearchValue} />
 			<Switch>
 				<Route
 					exact
 					path="/"
 				>
-					<HerosList className="lumx-spacing-padding-horizontal-huge" />
+					<HerosList className="lumx-spacing-padding-horizontal-huge" searchValue={searchValue} />
 				</Route>
 			</Switch>
 		</Router>
 
 	</>
   );
-}
+};
 
 export default App;
