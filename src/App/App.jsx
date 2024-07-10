@@ -7,6 +7,7 @@ import {
   Route,
 } from 'react-router-dom';
 import Header from '../components/Header';
+import HerosList from '../components/HerosList';
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
 					exact
 					path="/"
 				>
-					<section className="lumx-spacing-padding-horizontal-huge" />
+					<HerosList className="lumx-spacing-padding-horizontal-huge" />
 				</Route>
 			</Switch>
 		</Router>
