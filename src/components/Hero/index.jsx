@@ -4,15 +4,14 @@ import { Thumbnail, Size, AspectRatio } from '@lumx/react';
 import PropTypes from 'prop-types';
 import './index.scss';
 
-function Hero({
+const Hero = ({
   name,
   description,
   comics,
   series,
   stories,
   image,
-}) {
-  return (
+}) => (
 	<div className="hero">
 		<Thumbnail className="photo" image={image} alt={`${name} cover`} aspectRatio={AspectRatio.square} size={Size.xl} />
 		<div className="informations">
@@ -34,8 +33,7 @@ function Hero({
 			</div>
 		</div>
 	</div>
-  );
-}
+);
 
 Hero.propTypes = {
   name: PropTypes.string.isRequired,
