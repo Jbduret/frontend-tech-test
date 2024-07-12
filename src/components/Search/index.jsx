@@ -18,11 +18,8 @@ const Search = ({ onSearch }) => {
 	<TextField
 		className="search-field"
 		placeholder="Search your superhero..."
-		// icon={!isFocused && mdiMagnify}
 		icon={mdiMagnify}
 		onChange={searchHandler}
-		// onFocus={() => setIsFocused(true)}
-		// onBlur={() => setIsFocused(false)}
 		value={search}
 	/>
   );

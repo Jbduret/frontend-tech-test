@@ -26,10 +26,13 @@ const HerosList = ({
     const fetchData = async () => {
       setLoading(true);
       isLoading(true);
+
+      // Update the query according to the search bar or a new page
       let query = 'characters?limit=4';
       query += filter !== searchValue ? '&offset=0' : `&offset=${page * 4}`;
       query += searchValue ? `&nameStartsWith=${encodeURIComponent(searchValue)}` : '';
       setFilter(searchValue);
+
       await get(query)
         .then((result) => {
           setData(result.data.data.results);
@@ -87,14 +90,14 @@ HerosList.propTypes = {
   searchValue: PropTypes.string,
   page: PropTypes.number,
   setOffsetMax: PropTypes.func,
-  isLoading: PropTypes.bool,
+  isLoading: PropTypes.func,
 };
 
 HerosList.defaultProps = {
   searchValue: '',
   page: 0,
   setOffsetMax: () => {},
-  isLoading: false,
+  isLoading: () => {},
 };
 
 export default HerosList;
